@@ -9,6 +9,8 @@ public class InMessage implements Serializable {
 	
 	private String id;
 	
+	private String nickname;
+	
 	private String message;
 	
 	private LocalDate dateCreated = LocalDate.now();
@@ -20,6 +22,14 @@ public class InMessage implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	public String getMessage() {
 		return message;
@@ -27,10 +37,6 @@ public class InMessage implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public LocalDate getDateCreated() {
@@ -43,6 +49,7 @@ public class InMessage implements Serializable {
 
 	@Override
 	public String toString() {
-		return "InMessage [id=" + id + ", message=" + message + ", dateCreated=" + dateCreated + "]";
-	}	
+		return "InMessage [id=" + id + ", nickname=" + nickname + ", message=" + message + ", dateCreated="
+				+ dateCreated + "]";
+	}
 }

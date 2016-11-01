@@ -8,6 +8,8 @@ public class OutMessage implements Serializable {
 
 	String id;
 	
+	String nickname;
+	
 	String message;
 
 	public String getId() {
@@ -16,6 +18,14 @@ public class OutMessage implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getMessage() {
@@ -28,6 +38,6 @@ public class OutMessage implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OutMessage [id=" + id + ", message=" + message + "]";
+		return "OutMessage [id=" + id + ", nickname=" + nickname + ", message=" + message + "]";
 	}
 }

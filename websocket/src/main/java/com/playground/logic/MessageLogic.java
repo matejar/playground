@@ -30,6 +30,9 @@ public class MessageLogic {
 			logger.debug("No id in provided message. Setting id: " + message);			
 		}		
 		
+		// save message in redis
 		messageRepo.saveMessage(message);
+		
+		// send message via websocket
 	}
 }

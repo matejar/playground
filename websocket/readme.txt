@@ -5,6 +5,7 @@ The deliverable is two part:
 The task is to implement a data processing pipeline in the cloud.
 Set up a running environment aligned with the technologies mentioned below
 A Readme file containing information you deem useful for someone getting to know your code and want to try the system out
+
 Develop the application in Java 8, using either DropWizard or Spring Boot as the foundation
 A REST endpoint is taking a dummy JSON input, and the server puts the REST payload on Redis or another tool you think is well suited for the task
 A Consumer is running in the application, taking the freshly received message and persists it in a database of your choice
