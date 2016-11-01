@@ -12,9 +12,5 @@ public class AppConfiguration {
 	public String getContextPath() {
 		return contextPath;
 	}
-
-	@Override
-	public String toString() {
-		return "AppConfiguration [contextPath=" + contextPath + "]";
-	}
+	
 }
