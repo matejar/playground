@@ -1,6 +1,6 @@
 package com.playground.logic;
 
-import java.util.UUID;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +11,11 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
-import com.playground.model.InMessage;
+import com.google.gson.Gson;
+import com.playground.data.InMessage;
+import com.playground.data.OutMessage;
+import com.playground.data.repo.MessageRepository;
 
 @Component
 public class MessageLogic {
@@ -22,21 +24,21 @@ public class MessageLogic {
 
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
-
+	
+	@Autowired
+	MessageRepository messageRepo;
+	
+	private Gson gson = new Gson();
+	
 	/**
 	 * Method saves message to Redis... If message already exists, message will
 	 * be overwritten.
 	 */
-	public void saveMessage(InMessage message) {
+	public void saveMessage(OutMessage message) {
 		logger.info("Saving message: " + message);
-
-		if (StringUtils.isEmpty(message.getId())) {
-			message.setId(UUID.randomUUID().toString());
-			logger.debug("No id in provided message. Setting id: " + message);
-		}
-
+		
 		// push message to Redis queue
-		publish(message.toString());
+		publish(gson.toJson(message));
 	}
 
 	// put message to the Redis queue
@@ -50,5 +52,9 @@ public class MessageLogic {
 						((RedisSerializer<Object>) redisTemplate.getValueSerializer()).serialize(message));
 			}
 		});
+	}
+	
+	public List<InMessage> getMessages() {
+		return messageRepo.findAll();
 	}
 }

@@ -54,8 +54,13 @@ public class WebsocketApplication {
 	}
 
 	@Bean
+	RedisMessageListener redisMessageListener() {
+		return new RedisMessageListener();
+	}
+	
+	@Bean
 	MessageListenerAdapter messageListener() {
-		return new MessageListenerAdapter(new RedisMessageListener());
+		return new MessageListenerAdapter(redisMessageListener());
 	}
 
 	@Bean
@@ -67,15 +72,11 @@ public class WebsocketApplication {
 	}
 
 	@Autowired
-	private AppConfiguration config;
-
-	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Bean
 	ThymeleafViewResolver thymeleafViewResolver() {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-		resolver.addStaticVariable("config", config);
 		resolver.setTemplateEngine(templateEngine());
 		return resolver;
 	}

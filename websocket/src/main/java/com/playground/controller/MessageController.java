@@ -1,6 +1,7 @@
 package com.playground.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.playground.data.InMessage;
+import com.playground.data.OutMessage;
 import com.playground.logic.MessageLogic;
-import com.playground.model.InMessage;
-import com.playground.model.OutMessage;
 
 @Controller
 public class MessageController {
@@ -42,8 +43,7 @@ public class MessageController {
 		logger.info("Message received: " + outMessage.toString());
 		
 		// save in Redis
-		InMessage inMessage = convertFromOutMessage(outMessage);
-		msgLogic.saveMessage(inMessage);
+		msgLogic.saveMessage(outMessage);
 		
 		// send message to websocket
 		this.template.convertAndSend("/topic/messages", outMessage);
@@ -51,15 +51,10 @@ public class MessageController {
 
 	@RequestMapping(path="/message", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody List<OutMessage> getMessages(Model model) {
-		
-		return null;
-	}
-	
-	private InMessage convertFromOutMessage(OutMessage outMessage) {
-		InMessage message = new InMessage();
-		message.setId(outMessage.getId());
-		message.setNickname(outMessage.getNickname());
-		message.setMessage(outMessage.getMessage());
-		return message;
+		List<InMessage> inMessages = msgLogic.getMessages();
+		logger.info("Found " + inMessages.size() + " messages." );
+		return inMessages.stream()
+				.map(p -> new OutMessage(p.getNickname(), p.getMessage()))
+				.collect(Collectors.toList());
 	}
 }

@@ -32,19 +32,18 @@ function disconnect() {
 	console.log("Disconnected");
 }
 
+function onLoad() {
+	disconnect();
+	$("#historyTable").hide();
+}
 
 function showMessage(outMessage) {
     $("#messages").append("<tr><td>" + outMessage.nickname + "</td><td>" + outMessage.message + "</td></tr>");
 }
 
 function showMessageHistory(outMessage) {
-	$("#historyMessages").append("<tr><td>" + outMessage.nickname + "</td><td>" + outMessage.message + "</td></tr>");
+	$("#historyMessages").prepend("<tr><td>" + outMessage.nickname + "</td><td>" + outMessage.message + "</td></tr>");
 }
-
-function showHistory(data) {
-	// TODO
-}
-
 
 $(function () {
     $("form").on('submit', function (e) {
@@ -66,12 +65,14 @@ $(function () {
 		});
 	});
     $( "#history" ).click(function() {
-		$.ajax({
+    	$.ajax({
 			type : 'GET',
 			url : 'message',
 			contentType : "application/json",
-			sucess: function(data) {
-				showHistory(data);
+			success: function(data) {
+				$("#historyTable").find("tbody tr").remove();
+				$("#historyTable").show();
+				data.forEach(showMessageHistory);
 			}
 		});
 	});  

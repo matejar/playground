@@ -1,16 +1,17 @@
-package com.playground.model;
+package com.playground.data;
 
-import java.io.Serializable;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class OutMessage implements Serializable {
+@Document
+public class InMessage {
 
-	private static final long serialVersionUID = 34609961167864695L;
-
-	String id;
+	@Id
+	private String id;
 	
-	String nickname;
+	private String nickname;
 	
-	String message;
+	private String message;
 
 	public String getId() {
 		return id;
@@ -34,10 +35,5 @@ public class OutMessage implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	@Override
-	public String toString() {
-		return "OutMessage [id=" + id + ", nickname=" + nickname + ", message=" + message + "]";
-	}
+	}	
 }

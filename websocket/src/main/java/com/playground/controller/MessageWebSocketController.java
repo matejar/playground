@@ -4,7 +4,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-import com.playground.model.OutMessage;
+import com.playground.data.OutMessage;
 
 @Controller
 public class MessageWebSocketController {
