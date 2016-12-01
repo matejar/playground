@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar websocket/target/*.jar  
+web: java -jar websocket/target/*.jar  
