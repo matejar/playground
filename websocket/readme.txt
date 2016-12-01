@@ -13,12 +13,3 @@ A REST endpoint is implemented for retrieving all the messages persisted in JSON
 The message should also be pushed through Websockets for listening browser clients at the time the message was received on the REST endpoint
 A simple HTML page is implemented to show the real time message delivery
 Please setup a github repository to host the code and share it with your final note for review
-
-We're looking for that:
-All tasks are solved in the solution
-The application has a solid commit history
-The application is built with scalability and maintainability in mind.
-The application is built for testability, demonstrated by actual tests
-Your solution reflects a sense of quality you would be confident in releasing to production
-Documentation is applied to code/ repository describing intent and purpose, as well as complicated/ non obvious choices in the implementation
-Feel free to ask any questions regarding the test. 
