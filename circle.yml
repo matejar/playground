@@ -1,5 +1,6 @@
 general:
-  build_dir: websocket
+  artifacts: 
+    - "websocket"
 
 deployment:
   staging:
