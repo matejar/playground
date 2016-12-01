@@ -22,15 +22,12 @@ import com.mongodb.MongoClient;
 @EnableMongoRepositories(basePackages = "com.playground.data.repo")
 public class MongoConfig {
 	
-	@Value("${mongo.database}")
-	public String mongoDatabase;
-	
-	@Value("${mongo.schema}")
-	public String mongoSchema;
+    @Value("${mongo.uri}")
+    public String mongoUri;
 
-	@Bean
+    @Bean
     public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-    	return new SimpleMongoDbFactory(new MongoClient(mongoDatabase), mongoSchema);
+    	return new SimpleMongoDbFactory(mongoUri);
     }
 
     @Bean
