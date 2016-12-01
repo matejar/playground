@@ -1,1 +1,1 @@
-web: java -jar websocket/target/websocket-0.0.1-SNAPSHOT.jar  
+web: java -jar /app/tmp/cache/.m2/repository/com/playground/playground/0.0.1-SNAPSHOT/playground-0.0.1-SNAPSHOT.jar
