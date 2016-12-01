@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoURI;
 
 @Configuration
 @EnableMongoRepositories(basePackages = "com.playground.data.repo")
@@ -27,7 +28,7 @@ public class MongoConfig {
 
     @Bean
     public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-    	return new SimpleMongoDbFactory(mongoUri);
+    	return new SimpleMongoDbFactory(new MongoURI(mongoUri));
     }
 
     @Bean
