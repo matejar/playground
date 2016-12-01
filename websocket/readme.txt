@@ -1,7 +1,3 @@
-The deliverable is two part:
-1. Access to a github repository containing your solution for us to review.
-2. Either a fully running solution on an AWS image(Ubuntu) or a Docker setup and configuration for running the solution locally.
-
 The task is to implement a data processing pipeline in the cloud.
 Set up a running environment aligned with the technologies mentioned below
 A Readme file containing information you deem useful for someone getting to know your code and want to try the system out
