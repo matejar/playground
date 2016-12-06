@@ -3,7 +3,6 @@ general:
     - "websocket"
 
 deployment:
-  build_dir: websocket
   staging:
     branch: master
     heroku:
