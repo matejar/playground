@@ -38,7 +38,7 @@ function onLoad() {
 }
 
 function showMessage(outMessage) {
-    $("#messages").append("<tr><td>" + outMessage.nickname + "</td><td>" + outMessage.message + "</td></tr>");
+    $("#messages").prepend("<tr><td>" + outMessage.nickname + "</td><td>" + outMessage.message + "</td></tr>");
 }
 
 function showMessageHistory(outMessage) {
